@@ -12,13 +12,13 @@ app.use('/resource', express.static(__dirname + '/html/resource'));
 
 mu.root = __dirname + '/templates';
 
-var numbers = [];
+var numbersList = [];
 
 app.get('/', function (req, res) 
 {
     //res.sendFile(__dirname + '/index.html');
     
-    var stream = mu.compileAndRender('index.html', numbers);
+    var stream = mu.compileAndRender('index.html', { numbers: numbersList });
     stream.pipe(res);
 });
 
@@ -31,12 +31,12 @@ var numberInterval = setInterval(function()
 {
     var value = random.integer(1, 39);
     
-    if(typeof numbers[value] !== 'undefined')
+    if(typeof numbersList[value] !== 'undefined')
     {
-        numbers[value]++;
+        numbersList[value]++;
     }
     else
     {
-        numbers.push(value);
+        numbersList.push(value);
     }
 }, 10);
