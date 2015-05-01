@@ -15,7 +15,7 @@ app.get('/', function (req, res)
     //res.sendFile(__dirname + '/index.html');
     
     var stream = mu.compileAndRender('index.html', {name: "john"});
-    util.pump(stream, res);
+    stream.pipe(res);
 });
 
 var server = app.listen(3300, function () 
