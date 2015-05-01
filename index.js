@@ -27,7 +27,7 @@ var server = app.listen(3300, function ()
     console.log('App initialized');
 });
 
-while(true)
+var numberInterval = setInterval(function()
 {
     var value = random.integer(1, 39);
     
@@ -39,4 +39,4 @@ while(true)
     {
         numbers.push(value);
     }
-}
+}, 10);
