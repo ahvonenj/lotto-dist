@@ -14,10 +14,8 @@ app.get('/', function (req, res)
     //res.sendFile(__dirname + '/index.html');
     
     
-    mu.compileAndRender('index.html', {name: "john"}).on('data', function(data) 
-    {
-        console.log(data.toString());
-    });
+    var f = mu.render('index.html', {name: "john"});
+    res.send(f);
 });
 
 var server = app.listen(3300, function () 
