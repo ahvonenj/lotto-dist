@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var mu = require('mu2');
+var util = require('util');
 
 app.use('/style', express.static(__dirname + '/html/style'));
 app.use('/script', express.static(__dirname + '/html/script'));
@@ -13,9 +14,8 @@ app.get('/', function (req, res)
 {
     //res.sendFile(__dirname + '/index.html');
     
-    
-    var f = mu.render('index.html', {name: "john"});
-    res.send(f);
+    var stream = mu.compileAndRender('index.html', {name: "john"});
+    util.pump(stream, res);
 });
 
 var server = app.listen(3300, function () 
