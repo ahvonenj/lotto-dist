@@ -11,14 +11,7 @@ var random = new Random(Random.engines.mt19937().autoSeed());
 app.use('/script', express.static(__dirname + '/html/script'));
 app.use('/resource', express.static(__dirname + '/html/resource'));*/
 
-app.configure(function () 
-{
-    app.set('views', __dirname + '/views');
-    app.set('view engine', 'html');
-    app.set("view options", { layout: true });
-    app.engine('.html', engines.handlebars);
-    app.use(app.router);
-});
+app.engine('.html', engines.handlebars);
 
 var numbers = [];
 var template = Handlebars.compile(__dirname + '/templates/index.html');
