@@ -12,16 +12,17 @@ app.use('/script', express.static(__dirname + '/html/script'));
 app.use('/resource', express.static(__dirname + '/html/resource'));*/
 
 app.engine('.html', engines.handlebars);
+app.set('views', __dirname + '/templates');
 
 var numbers = [];
-var template = Handlebars.compile(__dirname + '/templates/index.html');
+//var template = Handlebars.compile(__dirname + '/templates/index.html');
 
 app.get('/', function (req, res) 
 {
     //res.sendFile(__dirname + '/index.html');
     
-    var stream = template({ numbers: numbers });
-    res.render(stream);
+    //var stream = template({ numbers: numbers });
+    res.render('index.html', { numbers: numbers });
 });
 
 var server = app.listen(3300, function () 
