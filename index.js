@@ -6,14 +6,12 @@ var util = require('util');
 var Random = require("random-js");
 var random = new Random(Random.engines.mt19937().autoSeed());
 
-app.use('/style', express.static(__dirname + '/html/style'));
+/*app.use('/style', express.static(__dirname + '/html/style'));
 app.use('/script', express.static(__dirname + '/html/script'));
-app.use('/resource', express.static(__dirname + '/html/resource'));
-
-mu.root = __dirname + '/templates';
+app.use('/resource', express.static(__dirname + '/html/resource'));*/
 
 var numbers = [];
-var template = Handlebars.compile('index.html');
+var template = Handlebars.compile(__dirname + '/templates/index.html');
 
 app.get('/', function (req, res) 
 {
