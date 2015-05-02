@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-var mu = require('mu2');
+var Handlebars = require('handlebars');
 var util = require('util');
 var Random = require("random-js");
 var random = new Random(Random.engines.mt19937().autoSeed());
@@ -12,20 +12,14 @@ app.use('/resource', express.static(__dirname + '/html/resource'));
 
 mu.root = __dirname + '/templates';
 
-var numbers = 
-{
-    list: [], 
-    index: function() 
-    {
-        return ++window['INDEX'] || (window['INDEX'] = 0);
-    }
-};
+var numbers = [];
+var template = Handlebars.compile('index.html');
 
 app.get('/', function (req, res) 
 {
     //res.sendFile(__dirname + '/index.html');
     
-    var stream = mu.compileAndRender('index.html', { numbers: numbers });
+    var stream = template({ numbers: numbers });
     stream.pipe(res);
 });
 
@@ -38,14 +32,13 @@ var numberInterval = setInterval(function()
 {
     var value = random.integer(1, 39);
     
-    if(typeof numbers.list[value] !== 'undefined')
+    if(typeof numbers[value] !== 'undefined')
     {
-        numbers.list[value].c++;
+        numbers[value]++;
     }
     else
     {
-        numbers.list.push({c: 0});
+        numbers.push(value);
+        numbers[value] = 0;
     }
-    
-    console.log(value);
 }, 10);

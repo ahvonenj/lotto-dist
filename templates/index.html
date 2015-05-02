@@ -10,9 +10,9 @@
         <div id = "wrapper">
             <h1>Lotto-dist</h1>
             <table>
-                {{#numbers}}
-                <tr><td>{{index}} -> {{c}}</td></tr>
-                {{/numbers}}
+                {{#each numbers}}
+                <tr><td>{{@index}} -> {{c}}</td></tr>
+                {{/each}}
             </table>
         </div>
     </body>
