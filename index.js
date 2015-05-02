@@ -10,6 +10,8 @@ var random = new Random(Random.engines.mt19937().autoSeed());
 app.use('/script', express.static(__dirname + '/html/script'));
 app.use('/resource', express.static(__dirname + '/html/resource'));*/
 
+app.set('view engine', 'hbs');
+
 var numbers = [];
 var template = Handlebars.compile(__dirname + '/templates/index.html');
 
