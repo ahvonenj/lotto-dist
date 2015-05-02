@@ -18,7 +18,7 @@ app.get('/', function (req, res)
     //res.sendFile(__dirname + '/index.html');
     
     var stream = template({ numbers: numbers });
-    res.send(stream);
+    res.render(stream);
 });
 
 var server = app.listen(3300, function () 
