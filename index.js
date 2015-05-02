@@ -3,6 +3,7 @@ var app = express();
 var path = require('path');
 var Handlebars = require('handlebars');
 var util = require('util');
+var engines = require('consolidate')
 var Random = require("random-js");
 var random = new Random(Random.engines.mt19937().autoSeed());
 
@@ -10,7 +11,14 @@ var random = new Random(Random.engines.mt19937().autoSeed());
 app.use('/script', express.static(__dirname + '/html/script'));
 app.use('/resource', express.static(__dirname + '/html/resource'));*/
 
-app.set('view engine', 'hbs');
+app.configure(function () 
+{
+    app.set('views', __dirname + '/views');
+    app.set('view engine', 'html');
+    app.set("view options", { layout: true });
+    app.engine('.html', engines.handlebars);
+    app.use(app.router);
+});
 
 var numbers = [];
 var template = Handlebars.compile(__dirname + '/templates/index.html');
