@@ -40,10 +40,12 @@ var numberInterval = setInterval(function()
     
     if(typeof numbers.list[value] !== 'undefined')
     {
-        numbers.list[value].c++;;
+        numbers.list[value].c++;
     }
     else
     {
         numbers.list.push({c: 0});
     }
+    
+    console.log(value);
 }, 10);
