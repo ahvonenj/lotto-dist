@@ -9,11 +9,11 @@
     <body>
         <div id = "wrapper">
             <h1>Lotto-dist</h1>
-            <ul>
+            <table>
                 {{#numbers}}
-                <li>{{.}}</li>
+                <tr><td>{{index}} -> {{c}}</td></tr>
                 {{/numbers}}
-            </ul>
+            </table>
         </div>
     </body>
 </html>

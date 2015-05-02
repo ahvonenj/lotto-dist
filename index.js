@@ -12,13 +12,20 @@ app.use('/resource', express.static(__dirname + '/html/resource'));
 
 mu.root = __dirname + '/templates';
 
-var numbersList = [];
+var numbers = 
+{
+    list: [], 
+    index: function() 
+    {
+        return ++window['INDEX'] || (window['INDEX'] = 0);
+    }
+};
 
 app.get('/', function (req, res) 
 {
     //res.sendFile(__dirname + '/index.html');
     
-    var stream = mu.compileAndRender('index.html', { numbers: numbersList });
+    var stream = mu.compileAndRender('index.html', { numbers: numbers });
     stream.pipe(res);
 });
 
@@ -31,12 +38,12 @@ var numberInterval = setInterval(function()
 {
     var value = random.integer(1, 39);
     
-    if(typeof numbersList[value] !== 'undefined')
+    if(typeof numbers.list[value] !== 'undefined')
     {
-        numbersList[value]++;
+        numbers.list[value].c++;;
     }
     else
     {
-        numbersList[value] = 0;
+        numbers.list.push({c: 0});
     }
 }, 10);
