@@ -12,7 +12,7 @@ app.use('/script', express.static(__dirname + '/html/script'));
 app.use('/resource', express.static(__dirname + '/html/resource'));*/
 
 app.engine('.html', engines.handlebars);
-app.set('views', __dirname + '/templates');
+app.set('views', __dirname + '/views');
 
 var numbers = [];
 //var template = Handlebars.compile(__dirname + '/templates/index.html');
