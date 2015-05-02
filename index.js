@@ -40,7 +40,6 @@ var numberInterval = setInterval(function()
     }
     else
     {
-        numbers.push(value);
         numbers[value] = 0;
     }
 }, 10);
