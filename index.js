@@ -37,6 +37,6 @@ var numberInterval = setInterval(function()
     }
     else
     {
-        numbersList.push(value);
+        numbersList[value] = 0;
     }
 }, 10);
